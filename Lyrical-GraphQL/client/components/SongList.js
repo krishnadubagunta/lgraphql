@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
-import { Link } from "react-router";
+import { Link, hashHistory } from "react-router";
 import fetchSongs from "../queries/fetchSongs";
 import DeleteSong from "../mutations/deleteSong";
 
@@ -16,13 +16,23 @@ class SongList extends Component {
 			.then(() => this.props.data.refetch());
 	}
 
+	handleClick(id) {
+		hashHistory.push(`songs/${id}`);
+	}
+
 	renderSongs() {
 		return this.props.data.songs.map((song, i) => {
 			return (
-				<li key={song.id} className="collection-item">
+				<li
+					key={song.id}
+					className="collection-item show-pointer"
+					onClick={() => {
+						this.handleClick(song.id);
+					}}
+				>
 					{song.title}
 					<i
-						className="material-icons right delete-item"
+						className="material-icons right show-pointer"
 						onClick={() => {
 							this.onSongDelete(song.id);
 						}}

@@ -1,3 +1,18 @@
-.delete-item {
+.show-pointer {
 	cursor: pointer;
+	user-select: none;
+}
+
+.collection-item {
+	display: flex;
+	justify-content: space-between;
+}
+
+.vote-box {
+	display: flex;
+	align-items: center;
+}
+
+.material-icons {
+	margin-right: 5px;
 }
